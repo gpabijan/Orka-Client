@@ -1,18 +1,15 @@
 
- const app = require('express')();
-'use strict'
-const piClient = require('./piClient.js')
 const http = require('http');
+const cloudcmd = require('cloudcmd');
+const io = require('socket.io');
+const app = require('express')();
+const piClient = require('./piClient.js')
 
 let client = null
-const io = require('socket.io')
-
 const port = process.argv.length > 2 ? process.argv[2] : 1993
 
- const cc = http.createServer({ shell: 'bash', users: {}, port: port })
-
-const cloudcmd = require('cloudcmd')
-const socket = io.listen(cc, {
+const server = http.createServer(app);
+const socket = io.listen(server, {
   path: '/cloud/socket.io'
 })
 
@@ -43,11 +40,12 @@ app.post('/connect', function (req, res) {
       client.stop()
       client = null
     }
-    client = new piClient(connectionString.settings,connectionString.name)
-    client.start()
+    client = new piClient(connectionString.settings,connectionString.name);
+    console.log("Finished setup. Starting connection");
+    client.start();
   })
 })
 
 
 console.log('Orka Client is listening on port ' + port)
-cc.listen(port)
+server.listen(port)

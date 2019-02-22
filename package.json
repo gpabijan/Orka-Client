@@ -16,9 +16,9 @@
   "author": "Karthik K",
   "license": "MIT",
   "dependencies": {
-    "cloudcmd": "^5.6.0",
+    "cloudcmd": "^5.13.0",
     "diskusage": "^0.1.5",
-    "systeminformation": "^3.5.1",
+    "systeminformation": "^3.54.0",
     "tty": "^1.0.1"
   }
 }

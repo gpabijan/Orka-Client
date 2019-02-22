@@ -6,10 +6,13 @@ let piClient = (function (serverOptions, name) {
   let timer = null
 
   function setup () {
+    console.log('Setup initialization...');
     client = require('socket.io-client')('http://' + serverOptions.ip + ':' + serverOptions.port, {
       query: 'client_name=' + name,
       reconnection: false
     })
+    console.log('Server: ' + serverOptions.ip + ':' + serverOptions.port);
+
     client.on('connect', function () {
       console.log('Connected with Server!..')
       start()
@@ -30,6 +33,7 @@ let piClient = (function (serverOptions, name) {
   }
 
   function start () {
+    console.log('Start initialization...');
     stats.startMonitoring(serverOptions.interval)
     timer = setInterval(function () {
       let statsData = stats.getStats()
