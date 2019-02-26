@@ -5,7 +5,6 @@ const io = require('socket.io');
 const app = require('express')();
 const piClient = require('./piClient.js')
 
-let client = null
 const port = process.argv.length > 2 ? process.argv[2] : 1993
 
 const server = http.createServer(app);
@@ -33,6 +32,7 @@ app.delete('/cloud/*', cloudcmd({
 }))
 app.post('/connect', function (req, res) {
   let data = ''
+  let client = null
   req.on('data', (chunk) => { data += chunk })
   req.on('end', () => {
     let connectionString = JSON.parse(data)
