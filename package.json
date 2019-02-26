@@ -18,6 +18,8 @@
   "dependencies": {
     "cloudcmd": "^5.13.0",
     "diskusage": "^0.1.5",
+    "express": "^4.16.4",
+    "socket.io": "^2.2.0",
     "systeminformation": "^3.54.0",
     "tty": "^1.0.1"
   }
